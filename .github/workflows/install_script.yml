@@ -18,7 +18,7 @@ jobs:
         run: |
           ./scripts/bootstrap_mise.sh
 
-      - name: Check Python Version
+      - name: List mise installed versions
         run: |
-          python --version
+          mise list
 
