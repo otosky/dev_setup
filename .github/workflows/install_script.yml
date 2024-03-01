@@ -16,7 +16,7 @@ jobs:
 
       - name: Run Shell Script
         run: |
-          ./script/bootstrap_mise.sh
+          ./scripts/bootstrap_mise.sh
 
       - name: Check Python Version
         run: |
