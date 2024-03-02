@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   run_script_and_check_python:
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.sys.os }}
     strategy:
       matrix:
         sys:
