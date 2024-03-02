@@ -17,12 +17,14 @@ jobs:
 
       - name: set shell var
         run: export SHELL=${{ matrix.sys.shell }}
-        shell: "${{ matrix.sys.shell }} {0}"
+        with:
+          shell: "${{ matrix.sys.shell }} {0}"
 
       - name:
         run: |
           echo $SHELL
-        shell: "${{ matrix.sys.shell }} {0}"
+        with:
+          shell: "${{ matrix.sys.shell }} {0}"
 
       # - name: Print context
       #   run: printenv
