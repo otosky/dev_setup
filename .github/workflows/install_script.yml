@@ -43,10 +43,6 @@ jobs:
            python --version
 
       - name: Run Shell Script Bash
-        run: |
-          ./scripts/bootstrap_mise.sh
-
-      - name: Run Shell Script Bash
         if: ${{ matrix.shell == 'bash' }}
         run: |
           ./scripts/bootstrap_mise.sh
