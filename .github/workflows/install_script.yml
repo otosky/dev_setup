@@ -10,9 +10,6 @@ jobs:
         sys:
           - {os: ubuntu-latest, shell: '/bin/zsh'}
           - {os: macos-latest, shell: '/bin/zsh'}
-    defaults:
-      run:
-        shell: "${{ matrix.sys.shell }} {0}"
 
     steps:
       - name: Checkout Repository
@@ -20,10 +17,12 @@ jobs:
 
       - name: set shell var
         run: export SHELL=${{ matrix.sys.shell }}
+        shell: "${{ matrix.sys.shell }} {0}"
 
       - name:
         run: |
           echo $SHELL
+        shell: "${{ matrix.sys.shell }} {0}"
 
       # - name: Print context
       #   run: printenv
