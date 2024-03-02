@@ -38,10 +38,21 @@ jobs:
         run: |
            python --version
 
-      - name: Run Shell Script
+      - name: Run Shell Script Bash
         run: |
-          eval $SHELL
           ./scripts/bootstrap_mise.sh
+
+      - name: Run Shell Script Bash
+        if: ${{ matrix.shell == 'bash' }}
+        run: |
+          ./scripts/bootstrap_mise.sh
+        shell: bash
+
+      - name: Run Shell Script Zsh
+        if: ${{ matrix.shell == 'zsh' }}
+        run: |
+          ./scripts/bootstrap_mise.sh
+        shell: 'zsh {0}'
 
       - name: List mise installed versions
         run: |
