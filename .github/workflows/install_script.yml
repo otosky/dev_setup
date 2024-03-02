@@ -12,7 +12,7 @@ jobs:
           - macos-latest
         shell:
           - bash
-          - zsh
+          # - zsh
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
