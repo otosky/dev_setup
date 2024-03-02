@@ -34,19 +34,16 @@ jobs:
         run: |
           echo $SHELL
 
-      # - name: Print context
-      #   run: printenv
-      #
-      # - name: Check python version
-      #   run: |
-      #     python --version
-      #
-      # - name: Run Shell Script
-      #   run: |
-      #     ./scripts/bootstrap_mise.sh
-      #
-      # - name: List mise installed versions
-      #   run: |
-      #     source ~/.bashrc
-      #     mise list
+      - name: Check python version
+        run: |
+           python --version
+
+      - name: Run Shell Script
+        run: |
+           ./scripts/bootstrap_mise.sh
+
+      - name: List mise installed versions
+        run: |
+          eval $SHELL
+          mise list
 
