@@ -4,20 +4,28 @@ on: [push, pull_request]
 
 jobs:
   run_script_and_check_python:
-    runs-on: ${{ matrix.sys.os }}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        sys:
-          - {os: ubuntu-latest, shell: '/bin/zsh'}
-          - {os: macos-latest, shell: '/bin/zsh'}
-    env:
-      SHELL: ${{ matrix.sys.shell }}
-
+        os:
+          - ubuntu-latest
+          - macos-latest
+        shell:
+          - bash
+          - zsh
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name:
+      - name: print shell
+        run: |
+          echo $SHELL
+
+      - name: set shell
+        run: |
+          export SHELL="$(${{ matrix.shell }})"
+
+      - name: print shell again
         run: |
           echo $SHELL
 
