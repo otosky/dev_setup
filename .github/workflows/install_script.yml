@@ -50,8 +50,17 @@ jobs:
           ./scripts/bootstrap_mise.sh
         shell: 'zsh {0}'
 
-      - name: List mise installed versions
+      - name: Verify Install Bash
+        if: ${{ matrix.shell == 'bash' }}
         run: |
           source $HOME/.bashrc
           mise list
+        shell: bash
+
+      - name: Verify Install Zsh
+        if: ${{ matrix.shell == 'zsh' }}
+        run: |
+          source $HOME/.zshrc
+          mise list
+        shell: 'zsh {0}'
 

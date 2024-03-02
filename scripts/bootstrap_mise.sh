@@ -140,6 +140,7 @@ main() {
 	install_mise
 	install_python_build_deps
 
+	# add mise to PATH for duration of script
 	export PATH="$HOME/.local/bin:$PATH"
 
 	mise settings set experimental true
