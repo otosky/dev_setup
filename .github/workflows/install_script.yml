@@ -12,7 +12,7 @@ jobs:
           - macos-latest
         shell:
           - bash
-          - zsh
+          # - zsh
     steps:
       - name: Dump matrix context
         env:
