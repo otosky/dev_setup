@@ -10,9 +10,6 @@ jobs:
         sys:
           - {os: ubuntu-latest, shell: '/bin/zsh'}
           - {os: macos-latest, shell: '/bin/zsh'}
-    defaults:
-      run:
-        shell: '${{ matrix.sys.shell }} {0}'
     env:
       SHELL: ${{ matrix.sys.shell }}
 
