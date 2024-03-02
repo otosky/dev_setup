@@ -13,19 +13,22 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Print context
-        run: printenv
-
-      - name: Check python version
+      - name:
         run: |
-          python --version
-
-      - name: Run Shell Script
-        run: |
-          ./scripts/bootstrap_mise.sh
-
-      - name: List mise installed versions
-        run: |
-          source ~/.bashrc
-          mise list
+          which zsh
+      # - name: Print context
+      #   run: printenv
+      #
+      # - name: Check python version
+      #   run: |
+      #     python --version
+      #
+      # - name: Run Shell Script
+      #   run: |
+      #     ./scripts/bootstrap_mise.sh
+      #
+      # - name: List mise installed versions
+      #   run: |
+      #     source ~/.bashrc
+      #     mise list
 
