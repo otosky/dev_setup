@@ -23,7 +23,7 @@ jobs:
 
       - name: set shell
         run: |
-          export SHELL="$(${{ matrix.shell }})"
+          export SHELL="$(which ${{ matrix.shell }})"
 
       - name: print shell again
         run: |
