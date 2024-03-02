@@ -24,11 +24,8 @@ jobs:
         run: |
           ./scripts/bootstrap_mise.sh
 
-      - name: Reload Shell
-        run: |
-          exec $SHELL
-
       - name: List mise installed versions
         run: |
+          source ~/.bashrc
           mise list
 
