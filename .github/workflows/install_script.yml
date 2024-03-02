@@ -15,7 +15,8 @@ jobs:
 
       - name:
         run: |
-          chsh -s $(which zsh)
+          echo $SHELL
+        shell: '/bin/zsh {0}'
 
       # - name: Print context
       #   run: printenv
