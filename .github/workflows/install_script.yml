@@ -23,7 +23,7 @@ jobs:
 
       - name: set shell
         run: |
-          export SHELL="$(which ${{ matrix.shell }})"
+          echo SHELL="$(which ${{ matrix.shell }})" >> "$GITHUB_ENV"
 
       - name: print shell again
         run: |
