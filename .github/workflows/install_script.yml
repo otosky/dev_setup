@@ -22,10 +22,6 @@ jobs:
         run: |
           sudo apt install zsh
 
-      - name: whoami
-        run: whoami
-        shell: 'zsh {0}'
-
       - name: print shell
         run: |
           echo $SHELL
@@ -46,13 +42,13 @@ jobs:
         if: ${{ matrix.shell == 'bash' }}
         run: |
           ./scripts/bootstrap_mise.sh
-        #shell: bash
+        shell: bash
 
       - name: Run Shell Script Zsh
         if: ${{ matrix.shell == 'zsh' }}
         run: |
           ./scripts/bootstrap_mise.sh
-        #shell: 'zsh {0}'
+        shell: 'zsh {0}'
 
       - name: List mise installed versions
         run: |
