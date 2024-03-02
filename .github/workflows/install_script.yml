@@ -17,6 +17,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: install extra shells
+        if: ${{ matrix.os }} == "ubuntu-latest"
+        run: |
+          apt install zsh
+
       - name: print shell
         run: |
           echo $SHELL
