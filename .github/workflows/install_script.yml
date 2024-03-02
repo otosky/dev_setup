@@ -1,4 +1,4 @@
-name: Run Shell Script and Check Python Version
+name: install
 
 on: [push, pull_request]
 
