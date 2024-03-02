@@ -7,16 +7,23 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        sys:
+          - {os: ubuntu-latest, shell: '/bin/zsh'}
+          - {os: macos-latest, shell: '/bin/zsh'}
+    defaults:
+      run:
+        shell: "${{ matrix.sys.shell }} {0}"
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
+      - name: set shell var
+        run: export SHELL=${{ matrix.sys.shell }}
+
       - name:
         run: |
           echo $SHELL
-        shell: '/bin/zsh {0}'
 
       # - name: Print context
       #   run: printenv
