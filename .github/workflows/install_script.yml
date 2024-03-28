@@ -7,25 +7,60 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
-
+        os:
+          - ubuntu-latest
+          - macos-latest
+        shell:
+          - bash
+          - zsh
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Print context
-        run: printenv
+      - name: install extra shells
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        run: |
+          sudo apt install zsh
+
+      - name: print shell
+        run: |
+          echo $SHELL
+
+      - name: set shell
+        run: |
+          echo SHELL="$(which ${{ matrix.shell }})" >> "$GITHUB_ENV"
+
+      - name: print shell again
+        run: |
+          echo $SHELL
 
       - name: Check python version
         run: |
-          python --version
+           python --version
 
-      - name: Run Shell Script
+      - name: Run Shell Script Bash
+        if: ${{ matrix.shell == 'bash' }}
         run: |
           ./scripts/bootstrap_mise.sh
+        shell: bash
 
-      - name: List mise installed versions
+      - name: Run Shell Script Zsh
+        if: ${{ matrix.shell == 'zsh' }}
         run: |
-          source ~/.bashrc
+          ./scripts/bootstrap_mise.sh
+        shell: 'zsh {0}'
+
+      - name: Verify Install Bash
+        if: ${{ matrix.shell == 'bash' }}
+        run: |
+          source $HOME/.bashrc
           mise list
+        shell: bash
+
+      - name: Verify Install Zsh
+        if: ${{ matrix.shell == 'zsh' }}
+        run: |
+          source $HOME/.zshrc
+          mise list
+        shell: 'zsh {0}'
 

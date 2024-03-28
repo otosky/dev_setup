@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euo pipefail
+set -eo pipefail
 
 get_os() {
 	os="$(uname -s)"
@@ -118,14 +118,6 @@ install_mise() {
 	fi
 
 	write_mise_activate_to_rc "$default_shell"
-
-	eval "$mise_activate_cmd"
-
-	mise settings set experimental true
-
-	# this setting is necessary to avoid issues with poetry missing symlinks
-	# https://github.com/mise-plugins/mise-poetry/issues/5
-	mise settings set python_compile 1
 }
 
 install_python_build_deps() {
@@ -147,6 +139,15 @@ main() {
 
 	install_mise
 	install_python_build_deps
+
+	# add mise to PATH for duration of script
+	export PATH="$HOME/.local/bin:$PATH"
+
+	mise settings set experimental true
+
+	# this setting is necessary to avoid issues with poetry missing symlinks
+	# https://github.com/mise-plugins/mise-poetry/issues/5
+	mise settings set python_compile 1
 
 	# install python first, so that poetry uses the correct python version
 	mise install -y python
